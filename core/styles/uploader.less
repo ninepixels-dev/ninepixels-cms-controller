@@ -1,0 +1,43 @@
+@import 'variables';
+
+.np-modal, .np-toolbar-container {
+    .init-upload {
+        padding: 40px;
+        text-align: center;
+        outline: 2px dashed #e6e6e6;
+        outline-offset: -18px;
+
+        span {
+            display: block;
+            font-size: 24px;
+            font-weight: 300;
+            color: #bdbdbd;
+        }
+
+        .or-label {
+            position: relative;
+            font-size: 13px;
+            font-style: italic;
+            margin: 10px 0;
+            color: @black;
+            &:before , &:after {
+                content: "_________";
+                position: absolute;
+                top: -6px;
+                color: #d0d0d0;
+                left: 50%;
+            }
+            &:before { margin-left: -70px; }
+            &:after { margin-left: 20px; }
+        }
+
+        label.btn {
+            display: inline-block;
+            font-size: 11px;
+            width: auto;
+            max-width: none !important;
+            margin-top: 5px;
+            padding: 10px 20px;
+        }
+    }
+}

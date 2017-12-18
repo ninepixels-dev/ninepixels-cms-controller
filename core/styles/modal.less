@@ -1,0 +1,105 @@
+@import 'variables';
+
+.np-modal {
+    + .modal-backdrop.in {
+        opacity: .7;
+    }
+
+    .modal-header {
+        color: @white;
+        padding: 0 0 10px 0;
+        text-transform: uppercase;
+        background: transparent;
+
+        > * {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        i { margin-right: 10px; }
+
+        h4 {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 14px;
+            letter-spacing: 1.2px;
+        }
+
+        button {
+            border: 1px solid @white;
+            border-radius: 5px;
+            padding: 6px 12px;
+            background-color: transparent;
+            color: @white;
+
+            &:hover {
+                background-color: @white;
+                color: @black;
+            }
+            &:active, &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .modal-body {
+        padding: 35px 50px;
+        background-color: @white;
+    }
+
+    .modal-content {
+        background-color: transparent;
+        box-shadow: none;
+        border: 0;
+        padding-top: 20px;
+        border-radius: 0;
+    }
+
+    .modal-footer, .modal-body-footer {
+        text-align: right;
+        padding: 0px 50px 35px 50px;
+        border: 0;
+        background-color: @white;
+
+        hr { margin: 0 0 35px 0; }
+
+        button {
+            padding: 8px 20px;
+            text-transform: none;
+            margin-top: 0; 
+        }
+    }
+
+    .modal-body-footer {
+        margin: 50px -50px -50px -50px;
+    }
+
+    .np-modal-empty {
+        font-size: 22px;
+        text-align: center;
+        a {
+            display: block;
+            margin-top: 15px;
+            &:active, &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .np-confirmation-modal {
+        padding: 20px 30px;
+        padding-bottom: 0;
+        + .modal-footer {
+            padding: 20px 30px;
+        }        
+        p { 
+            padding-top: 20px;
+            font-size: 32px; 
+        }
+    }
+}
+
+.modal-hg {
+    width: 90%;
+}

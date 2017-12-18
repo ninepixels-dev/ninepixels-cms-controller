@@ -1,0 +1,37 @@
+<div class="np-login-container">
+    <div class="mask"></div>
+    <form class="login-form" ng-submit="login()">
+        <div class="project-logo"></div>
+
+        <img src="np-assets/images/nine-pixels-cms.png" alt="Nine Pixels CMS" />
+
+        <div class="input-container">
+            <input type="text" name="username" ng-model="username" placeholder="Username" autofocus/>
+        </div>
+
+        <div class="input-container">
+            <input type="password" name="password" ng-model="password" placeholder="Password" />
+        </div>
+
+        <div class="login-controller">
+            <a href="#" class="pull-right">Forgot password?</a>
+        </div>
+
+        <div class="button-container align-center">
+            <button type="submit" id="login-btn" class="btn" ng-disabled="isLoading">
+                <span>Log In</span>
+                <div class="spinner ng-animate-disabled" ng-show="isLoading">
+                    <div class="dot1"></div>
+                    <div class="dot2"></div>
+                </div>
+            </button>
+        </div>
+    </form>
+
+    <div class="powered-by">
+        <span>Powered by</span>
+        <img src="np-assets/images/nine-pixels-logo.png" alt="Nine Pixels Logo" />
+        <span>Version 2.1 beta</span>
+    </div>
+
+</div>

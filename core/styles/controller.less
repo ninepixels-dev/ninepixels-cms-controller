@@ -1,0 +1,98 @@
+@import 'variables';
+
+.np-holding-container { width: 100%; height: @toolbar-height; }
+
+.np-toolbar-container {
+    * { font-family: 'Roboto Condensed', sans-serif; }
+
+    position: fixed;
+    width: 100%;
+    height: @toolbar-height;
+    font-size: 0;
+    top: 0;
+    background-color: @black;
+    z-index: 1000;
+
+    .btn-toolbar, button.btn-toolbar {
+        color: @white;
+        font-size: 11px;
+        line-height: @toolbar-height - 2;
+        text-transform: uppercase;
+        padding: 0 20px;
+        border-radius: 0;
+        outline: none;
+        margin-top: 0;
+        background-color: rgba(255, 255, 255, 0.15);
+        transition: all .2s;
+
+        i { margin-top: -3px; }
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover {
+            background-color: @np-orange;
+        }
+    }
+
+    .btn-group {
+        > .btn {
+            margin-right: 1px;
+        }
+        > .btn:last-of-type {
+            margin-right: 0px;
+        }
+    }
+
+    .user-info {
+        padding: 0 20px;
+        * {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .user {
+            font-size: 14px;
+            line-height: @toolbar-height;
+            color: #a1a1a1;
+        }
+    }
+
+    .dropdown-toolbar {
+        display: inline-block;
+
+        .btn-toolbar {
+            line-height: @toolbar-height;
+            &:focus, &:active {
+                outline: none;
+            }
+        }
+
+        &:focus, &:active {
+            outline: none;
+        }
+
+        .dropdown-menu {
+            background-color: @black;
+            margin: 0; padding: 0;
+            a {
+                padding: 10px 20px;
+                background-color: @black;
+                color: @white;
+                &:hover {
+                    background: @np-orange;
+                    transition: all .2s;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .np-toolbar-container .btn-toolbar i { display: none; }
+}
+
+@media only screen and (max-width: 750px) {
+    .np-holding-container, .np-toolbar-container { display: none; }
+    #np-editor-iframe { height: 100vh; }
+}

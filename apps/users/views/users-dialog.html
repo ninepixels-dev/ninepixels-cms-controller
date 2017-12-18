@@ -1,0 +1,73 @@
+<div class="modal-header">
+    <i class="toolbar-icon icon-control-page"></i>
+    <h4>Upravljaj korisnicima</h4>
+    <button type="button" class="btn btn-default pull-right" ng-click="ctrl.cancel()">X</button>
+</div>
+
+<div class="modal-body" ng-show="status.view === 'list'">
+    <div class="form-group">
+        <label>Pretraga</label>
+        <input type="text" class="form-control" ng-model="search.username" ng-trim="false">
+    </div>
+
+    <ul class="np-modal-list">
+        <li ng-repeat="user in users| filter:search | orderBy: 'id' track by user.id">
+            <div class="np-modal-list-name">{{user.username}}, {{user.email}}</div>
+            <div class="np-modal-list-controls">
+                <span ng-click="ctrl.toggle(user)" ng-if="user.id !== currentUser.id && currentUser.admin" title="Korisnik {{user.enabled ? 'aktiviran' : 'deaktiviran'}}">
+                    <i class="glyphicon" ng-class="user.enabled ? 'glyphicon-ok-circle' : 'glyphicon-ban-circle'"></i>
+                </span>
+                <span ng-click="ctrl.update(user)" title="Izmeni korisnika"><i class="glyphicon glyphicon-pencil"></i></span>
+                <span ng-click="ctrl.delete(user)" ng-if="user.id !== currentUser.id && currentUser.admin" title="Obriši korisnika"><i class="glyphicon glyphicon-trash"></i></span>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="modal-body" ng-show="status.view === 'form'">
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <label>Korisničko ime</label>
+            <input type="text" class="form-control" ng-model="_user.username">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <label>Ime i Prezime</label>
+            <input type="text" class="form-control" ng-model="_user.name">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" ng-model="_user.email" ng-disabled="_user.id">
+        </div>
+    </div>
+
+    <div class="row" ng-show="!_user.id || _user.id === currentUser.id">
+        <div class="col-md-6 form-group">
+            <label>Lozinka</label>
+            <input type="password" class="form-control" ng-model="_user.password" ng-value="">
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Lozinka ponovo</label>
+            <input type="password" class="form-control" ng-model="_user.password_again" ng-value="">
+        </div>
+    </div>
+
+    <div class="row" ng-show="currentUser.admin">
+        <div class="col-md-12 form-group">
+            <switcher ng-model="_user.admin" true-label="Administrator"></switcher><br>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer" ng-show="status.view === 'list'">
+    <button type="button" class="btn btn-ninepixels" ng-click="ctrl.addNew()">Dodaj korisnika</button>
+</div>
+
+<div class="modal-footer" ng-show="status.view === 'form'">
+    <button type="button" class="btn btn-ninepixels" ng-click="ctrl.save(_user)">Sačuvaj</button>
+</div>

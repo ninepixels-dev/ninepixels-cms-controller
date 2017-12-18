@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h4>{{confirmation.header}}</h4>
+    <button type="button" class="btn btn-default pull-right" ng-click="confirmation.cancel()">X</button>
+</div>
+
+<div class="modal-body np-dialog-modal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>{{confirmation.label}}</label>
+                <input type="text" ng-model="data">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn--flat btn-orange" type="button" ng-click="confirmation.ok()">Sačuvaj</button>
+    <button class="btn btn--flat btn-default" type="button" ng-click="confirmation.cancel()">Otkaži</button>
+</div>

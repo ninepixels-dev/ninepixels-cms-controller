@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h4>Izaberite sliku</h4>
+    <button type="button" class="btn btn-default pull-right" ng-click="cancel()">X</button>
+</div>
+
+<div class="modal-body">
+    <div class="row" ng-if="!selected">
+        <div class="col-md-12 form-group">
+            <label>Pretraga</label>
+            <input type="text" class="form-control" ng-model="search.name" ng-trim="false">
+        </div>
+    </div>
+
+    <div class="row np-gallery-list" ng-if="!selected">
+        <div class="np-gallery-holder np-gallery-control" ng-click="pick()">
+            <i class="glyphicon glyphicon-ban-circle"></i>
+            <label>Poništi izabrano</label>
+        </div>
+
+        <div class="np-gallery-holder" ng-repeat="gallery in galleries| filter:search" ng-click="select(gallery)">
+            <img ng-repeat="image in gallery.images| limitTo:4" ng-src="{{server_url + image.url}}">
+            <label>{{gallery.name}}</label>
+        </div>
+    </div>
+
+    <div class="row np-gallery-list" ng-if="selected">
+        <div class="np-gallery-item" ng-repeat="image in selected" ng-click="pick(image)">
+            <img ng-src="{{server_url + image.url}}" alt="{{image.alt}}">
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-close" ng-click="cancel()">Zatvori</button>
+</div>

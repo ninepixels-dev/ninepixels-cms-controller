@@ -1,0 +1,116 @@
+@import 'variables';
+
+.np-modal, .np-toolbar-container {
+
+    .np-gallery-list {
+        padding: 5px;
+        column-gap: 1.5em;
+        -moz-column-gap: 1.5em;
+        -webkit-column-gap: 1.5em;
+    }
+
+    .np-gallery-holder {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        width: calc(~'25% - 20px');
+        height: 155px;
+        margin: 10px;
+        overflow: hidden;
+        text-align: center;
+        cursor: pointer;
+        border: 1px solid @lightgrey;
+
+        label {
+            position: absolute;
+            width: 100%;
+            top: 50%; left: 0;
+            margin-top: -16px;
+            text-align: center;
+            padding: 5px 0;
+            color: @white;
+            z-index: 10;
+            cursor: pointer;
+            background-color: rgba(0,0,0,0.3);
+        }
+
+        img {
+            position: absolute;
+
+            width: 50%;
+            height: auto;
+
+            &:nth-of-type(1) { top: 0; left: 0; z-index: 10; }
+            &:nth-of-type(2) { top: 0; right: 0; }
+            &:nth-of-type(3) { bottom: 0; left: 0; }
+            &:nth-of-type(4) { bottom: 0; right: 0; }
+        }
+    }
+
+    .np-gallery-item {
+        position: relative;
+        display: inline-block;
+        width: calc(~'20% - 20px');
+        margin: 10px;
+        text-align: center;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+
+        &--wider {
+            width: calc(~'25% - 20px');
+        }
+
+        img { max-width: 100%; }
+    }
+
+    .np-gallery-meta {
+        > * {
+            margin: 1px 0 !important;
+        }
+        button {
+            width: 100%;
+            font-size: 13px;
+            border-radius: 0;
+            text-transform: none;
+        }
+    }
+
+    .np-gallery-controls {
+        padding: 0;
+        margin: 0;
+    }
+
+    .np-gallery-control {
+        i {
+            font-size: 125px;
+            line-height: 143px;
+            color: rgba(0,0,0,0.2);
+        }
+    }
+
+    .np-progress-bar {
+        width: 100%;
+        height: 5px;
+        margin-top: -5px;
+        margin-bottom: 0;
+        background-color: #4cae4c;
+    }
+
+    .np-progress-status {
+        position: absolute;
+        width: 100%;
+        font-size: 72px;
+        top: 5px;
+        z-index: 99;
+
+        &--success i {
+            color: #4cae4c;
+            &:hover {color: #4cae4c;}
+        }
+        &--error i {
+            color: #d43f3a;
+            &:hover {color: #d43f3a;}
+        }
+    }
+}

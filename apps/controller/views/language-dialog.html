@@ -1,0 +1,72 @@
+<div class="modal-header">
+    <i class="toolbar-icon icon-control-page"></i>
+    <h4>Jezici</h4>
+    <button type="button" class="btn btn-default pull-right" ng-click="ctrl.cancel()">X</button>
+</div>
+
+<div class="modal-body">
+    <div class="np-modal-empty" ng-if="!languages.length">
+        Trenutno nema definisanih jezika
+        <a href="" ng-click="ctrl.add()">Dodaj prvi</a>
+    </div>
+
+    <uib-tabset type="tabs" class="modal-tabs" ng-if="languages.length">
+        <uib-tab index="0" heading="Jezik">
+            <ul class="np-modal-list" ng-show="view === 'list'">
+                <li ng-repeat="language in languages track by language.id">
+                    <div class="np-modal-list-name">{{language.name}} ({{language.code}})</div>
+
+                    <div class="np-modal-list-controls">
+                        <span ng-click="ctrl.toggle(language)">
+                            <i class="glyphicon" ng-class="language.visible ? 'glyphicon-ok' : 'glyphicon-ban-circle'"></i>
+                        </span>
+                        <span ng-click="ctrl.update(language)"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <span ng-click="ctrl.delete(language)"><i class="glyphicon glyphicon-trash"></i></span>
+                    </div>
+                </li>
+            </ul>
+            <div class="modal-body-footer" ng-show="view === 'list'">
+                <button type="button" class="btn btn-ninepixels" ng-click="ctrl.add()">Dodaj jezik</button>
+            </div>
+
+            <div class="row" ng-show="view === 'form'">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label>Jezik</label>
+                        <input type="text" class="form-control" ng-model="language.name">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Kod</label>
+                        <input type="text" class="form-control" ng-model="language.code">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body-footer" ng-show="view === 'form'">
+                <button type="button" class="btn btn-ninepixels" ng-click="ctrl.save(language)">Sačuvaj</button>
+            </div>
+        </uib-tab>
+
+        <uib-tab index="1" heading="Lokalizacija">
+            <table class="np-localization-list">
+                <tr>
+                    <th style="width: {{100 / (languages.length + 1)}}%">Original</th>
+                    <th ng-repeat="language in languages track by language.id" style="width: {{100 / (languages.length + 1)}}%">{{ language.name}}<th>
+                </tr>
+                <tr ng-repeat="(key, value) in locales | groupBy: 'origin'">
+                    <td class="np-localization-name">{{key}}</td>
+                    <td ng-repeat="language in languages track by language.id">
+                        <input type="text" ng-model="localization[key + language.id].translate"
+                               ng-value="ctrl.localization.get(key, language).translate" 
+                               ng-change="ctrl.localization.init(key, language)"/>
+                    </td>
+                </tr>
+            </table>
+            <div class="modal-body-footer">
+                <button type="button" class="btn btn-ninepixels" ng-click="ctrl.localization.save(localization)">Sačuvaj</button>
+            </div>
+        </uib-tab>
+
+    </uib-tabset>
+</div>

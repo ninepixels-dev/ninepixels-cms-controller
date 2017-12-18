@@ -1,0 +1,29 @@
+<li ng-repeat="page in list| parent: parent | filter: filter track by page.id" class="{{parent ? 'ui-sortable-list-' + parent : 'ui-sortable-main'}}">
+    <div class="np-modal-list-name">{{page.name}}</div>
+
+    <div class="np-modal-list-actions">
+        <span ng-click="_toggle(page, 'show_header')">
+            Header:<i class="glyphicon" ng-class="page.show_header ? 'glyphicon-ok' : 'glyphicon-ban-circle'"></i>
+        </span>
+        <span ng-click="_toggle(page, 'show_footer')">
+            Footer<i class="glyphicon" ng-class="page.show_footer ? 'glyphicon-ok' : 'glyphicon-ban-circle'"></i>
+        </span>
+        <span ng-click="_toggle(page, 'show_in_navigation')">
+            In nav:<i class="glyphicon" ng-class="page.show_in_navigation ? 'glyphicon-ok' : 'glyphicon-ban-circle'"></i>
+        </span>
+    </div>
+
+    <div class="np-modal-list-controls">
+        <span ng-click="_update(page)"><i class="glyphicon glyphicon-pencil"></i></span>
+        <span ng-click="_delete(page)"><i class="glyphicon glyphicon-trash"></i></span>
+    </div>
+
+    <ul np-page-list 
+        data-list="list"
+        data-parent="page.id"
+        data-filter="filter"
+        data-update="update"
+        data-toggle="toggle"
+        data-remove="remove">
+    </ul>
+</li>

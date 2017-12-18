@@ -1,0 +1,270 @@
+@import 'variables';
+
+body.with-toolbar {
+    overflow: hidden;
+}
+
+.np-modal, .np-toolbar-container {
+    i {
+        color: @grey;
+        .transition(color .3s);
+    }
+
+    // INPUTS
+    input[type="text"], input[type="password"], input[type="number"], textarea, .dropdown-toggle, select {
+        font-family: 'Roboto Condensed', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        color: #5f5f5f;
+        height: 40px;
+        margin-bottom: 0px;
+        padding: 20px 10px;
+        line-height: 40px;
+
+        border-radius: 0; border: 0;
+        box-shadow: none;
+        border-bottom: 1px solid #e6e6e6;
+        background-color: #e6e6e6;
+        transition: background-color .2s;
+    }
+
+    input[type="text"] { margin: 0; }
+
+    textarea {
+        line-height: 24px;
+    }
+
+    input[type="text"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
+        outline: 0; border: 0;
+        box-shadow: none;
+        background-color: transparent;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+    input[type=checkbox] {
+        display: inline-block;
+    }
+
+    textarea { min-height: 65px; resize: none; }
+
+    .html-snippet {
+        min-height: 350px;
+        padding: 10px;
+    }
+
+    .btn {
+        margin: auto;
+        padding: 8px 20px;
+    }
+
+    .btn-orange {
+        color: @white;
+        background-color: @orange;
+        border-color: @orange;
+        &:hover {
+            background-color: @np-orange;
+            border-color: @np-orange;
+        }
+    }
+
+    .btn-ninepixels {
+        font-family: 'Roboto Condensed', sans-serif;
+        font-size: 14px;
+        color: @white;
+        text-transform: uppercase;
+        border-radius: 0;
+        padding: 8px 0;
+        background-color: @orange;
+        width: 100%;
+        max-width: 170px;
+
+        &:hover {
+            background-color: @np-orange;
+            border-color: @np-orange;
+        }
+
+        &:hover, &:focus, &:active {
+            color: @white;
+            outline: none;
+        }
+    }
+
+    .btn-close {
+        color: @orange;
+        border-color: @orange;
+        border-radius: 0;
+        background-color: transparent;
+        &:hover, &:focus, &:active {
+            color: @white;
+            background-color: @orange;
+            outline: none;
+        }
+    }
+
+    .btn--flat {
+        border-radius: 0;
+    } 
+
+    .dropdown {
+        .dropdown-toggle {
+            width: 100%;
+            line-height: 0px;
+            font-size: 14px;
+            text-align: left;
+            text-transform: none;
+            &:after {
+                content: '\e259';
+                position: absolute;
+                font-family: 'Glyphicons Halflings';
+                font-size: 12px;
+                margin-top: -1px;
+                right: 10px;
+                top: 50%;
+            }
+        }
+
+        button { 
+            margin-top: 0; 
+            line-height: 14px;
+            border: 0;
+            &:focus {
+                outline: none;
+            }
+        }
+        a {
+            padding: 6px 20px;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            width: 100%;
+            border-radius: 0;
+            max-height: 350px;
+            overflow: auto;
+            padding: 0;
+            z-index: 9999;
+
+            li {
+                position: relative;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+
+                &:before {
+                    display: none;
+                }
+
+                &:hover {
+                    .dropdown-menu__actions {
+                        display: block;
+                    }
+                }
+            }
+
+            &--with-actions {
+                li {
+                    position: relative;
+                }
+                a {
+                    padding-right: 25px;
+                }
+            }
+
+            &__actions {
+                display: none;
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                span {
+                    padding: 0 5px;
+                    &:hover {
+                        i {color: @orange;}
+                    }
+                    &:focus, &:active {
+                        outline: none;
+                    }
+                }
+            }
+        }
+
+        .separate-line {
+            border-bottom: 1px solid lightgrey;
+        }
+    }
+
+    .ng-animate {
+        -webkit-transition: none;
+        transition: none;
+        -webkit-animation: none 0s;
+        animation: none 0s;
+    }
+
+    // FORM
+    .form-group {
+        margin-bottom: 10px;
+        text-align: left;
+
+        .input-label {
+            position: absolute;
+            line-height: 90px;
+            top: 0;
+            right: 30px;
+        }
+
+        label {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+    }
+
+    .form-label {
+        text-align: right;
+        line-height: 40px;
+    }
+
+    .pick-image {
+        position: relative;
+        padding: 20px;
+        border: 2px dashed #e6e6e6;
+        text-align: center;
+        img {
+            max-width: 33%;
+        }
+        &:focus {
+            outline: none;
+        }
+        &.empty:after {
+            position: absolute;
+            content: '\e025';
+            font-family: 'Glyphicons Halflings';
+            opacity: .2;
+            font-size: 19px;
+            top: 50%;
+            margin-top: -14px;
+        }
+    }
+
+    .page-switch-buttons {
+        margin-top: 10px;
+        .switcher-label {
+            &.true { display: none; }
+            &.false { min-width: 90px; }
+        }
+    }
+
+    .align-right {
+        text-align: right;
+    }
+}
+
+#np-editor-iframe {
+    width: 100%;
+    height: calc(~'100vh - '(@toolbar-height));
+    border: 0;
+}

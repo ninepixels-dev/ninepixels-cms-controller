@@ -1,0 +1,28 @@
+@import 'variables';
+
+// ANGULAR TOAST DEFINITIONS
+._md {
+    z-index: 2050;
+    line-height: 65px;
+    &.success {
+        .md-toast-content {
+            background-color: #0CB976;
+        }
+    }
+    &.error {
+        .md-toast-content {
+            background-color: #DE5307;
+        }
+    }
+    &.warn {
+        .md-toast-content {
+            background-color: yellowgreen;
+        }
+    }
+}
+
+.np-toggle-off:not([np-toolbar]) {
+    display: none;
+}
+
+.np-toggle-off { opacity: .3; }

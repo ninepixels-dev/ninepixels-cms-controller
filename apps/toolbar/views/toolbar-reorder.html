@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <h4>Preuredi</h4>
+    <button type="button" class="btn pull-right" ng-click="ctrl.cancel()">X</button>
+</div>
+
+<div class="modal-body">
+    <ul class="np-sortable-list" ui-sortable ng-model="items">
+        <li ng-repeat="item in items track by item.id">{{item.structure| htmlToPlaintext}}</li>
+    </ul>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-ninepixels" ng-click="ctrl.saveReorder()">Sačuvaj</button>
+</div>

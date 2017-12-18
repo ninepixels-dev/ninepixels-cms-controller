@@ -1,0 +1,36 @@
+@import 'variables';
+
+.np-floating-panel {
+    display: none;
+    position: absolute;
+    border: 1px solid @white;
+    z-index: 999;
+
+    .btn {
+        margin-top: 0;
+        border-radius: 0;
+        background-color: #363433;
+        border: 1px solid @white;
+        transition: all .2s;
+
+        i { color: @white; }
+        &:hover { background-color: @np-orange; }
+        &:focus { outline: none; }
+    }
+
+    &.active { display: block; }
+
+    &:hover { display: block !important; }
+}
+
+.np-item-holder {
+    width: 100%;
+    min-height: 150px;
+}
+
+[np-toolbar] {
+    &.np-toolbar-active, &:hover {
+        outline: 1px dashed @np-orange;
+        outline-offset: 5px;
+    }
+}

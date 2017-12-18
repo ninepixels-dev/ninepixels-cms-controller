@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="col-md-8 form-group">
+        <label>Povezana strana</label>
+        <div class="dropdown">
+            <button class="dropdown-toggle" type="button" data-toggle="dropdown">{{page.parent.name}}</button>
+            <ul class="dropdown-menu">
+                <li ng-repeat="_page in pages | orderBy: 'id' track by _page.id">
+                    <a ng-click="page.parent = _page">{{_page.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-4 form-group">
+        <label>Šablon</label>
+        <div class="dropdown">
+            <button class="dropdown-toggle" type="button" data-toggle="dropdown">{{page.template}}</button>
+            <ul class="dropdown-menu">
+                <li ng-repeat="(key, val) in templates">
+                    <a ng-click="page.template = val">{{key}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 form-group">
+        <label>Ime</label>
+        <input type="text" class="form-control" ng-change="ctrl.validate(page.name)" ng-model="page.name" ng-trim="false">
+    </div>
+
+    <div class="col-md-4 form-group">
+        <label>Redosled</label>
+        <input type="number" class="form-control" ng-model="page.position">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 form-group">
+        <label>Slika</label>
+        <div np-image-picker class="pick-image" ng-model="page.image" ng-click="manage()" ng-class="{'empty' : !page.image}">
+            <img ng-if="page.image" ng-src="{{server_url + page.image.url}}" />
+        </div>
+    </div>
+
+    <div class="col-md-4 form-group">
+        <label>Galerija</label>
+        <div class="dropdown">
+            <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">{{page.gallery.name}}</button>
+            <ul class="dropdown-menu">
+                <li ng-repeat="gallery in galleries | orderBy: 'name'">
+                    <a ng-click="page.gallery = gallery">{{gallery.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 form-group">
+        <label>Metadata</label>
+        <uib-tabset type="tabs nested-tabs">
+            <uib-tab heading="Default"><section np-metadata data-page="page" data-update="update"></section></uib-tab>
+            <uib-tab ng-repeat="language in languages track by language.id" heading="{{language.name}}">
+                <section np-metadata data-language="language" data-page="page" data-update="update"></section>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>
+
+<div class="row page-switch-buttons">
+    <div class="col-md-3">
+        <switcher ng-model="page.show_header" false-label="Header"></switcher><br>
+        <switcher ng-model="page.show_footer" false-label="Footer"></switcher>
+    </div>
+    <div class="col-md-3">
+        <switcher ng-model="page.show_navigation" false-label="Navigation"></switcher><br>
+        <switcher ng-model="page.show_in_navigation" false-label="In navigation"></switcher>
+    </div>
+    <div class="col-md-3">
+        <switcher ng-model="page.visible" false-label="Active"></switcher>
+    </div>
+</div>

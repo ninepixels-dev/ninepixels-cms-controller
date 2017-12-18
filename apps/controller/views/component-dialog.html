@@ -1,0 +1,57 @@
+<div class="modal-header">
+    <i class="toolbar-icon icon-control-page"></i>
+    <h4>Upravljaj komponentama</h4>
+    <button type="button" class="btn btn-default pull-right" ng-click="ctrl.cancel()">X</button>
+</div>
+
+<div class="modal-body" ng-show="view === 'list' && components.length">
+    <label>Pretraga</label>
+    <div class="row">
+        <div class="col-md-9 form-group">
+            <input type="text" class="form-control" ng-model="search.name" ng-trim="false">
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-ninepixels" ng-click="ctrl.add()">Dodaj komponentu</button>
+        </div>
+    </div>
+
+    <ul class="np-modal-list">
+        <li ng-repeat="component in components track by component.id">
+            <div class="np-modal-list-name">{{component.name}}</div>
+
+            <div class="np-modal-list-controls">
+                <span ng-click="ctrl.update(component)"><i class="glyphicon glyphicon-pencil"></i></span>
+                <span ng-click="ctrl.delete(component)"><i class="glyphicon glyphicon-trash"></i></span>
+            </div>
+        </li>
+    </ul>
+
+</div>
+
+<div class="modal-body" ng-if="!components.length && view !== 'form'">
+    <div class="np-modal-empty">
+        Trenutno nemate komponenti
+        <a href="" ng-click="ctrl.add()">Dodaj prvu</a>
+    </div>
+</div>
+
+<div class="modal-body" ng-show="view === 'form'">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Naziv</label>
+                <input type="text" class="form-control" ng-model="_component.name">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>HTML kod</label>
+                <textarea class="form-control html-snippet" ng-model="_component.value"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer" ng-if="view === 'form'">
+    <button type="button" class="btn btn-ninepixels" ng-click="ctrl.save(_component)">Sačuvaj</button>
+</div>

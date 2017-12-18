@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h4>Potvrda</h4>
+    <button type="button" class="btn btn-default pull-right" ng-click="confirmation.cancel()">X</button>
+</div>
+
+<div class="modal-body np-confirmation-modal">
+    <div class="row">
+        <div class="col-md-12">
+            <p>{{confirmation.message}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn--flat btn-orange" type="button" ng-click="confirmation.ok()">{{confirmation.accept}}</button>
+    <button class="btn btn--flat btn-default" type="button" ng-click="confirmation.cancel()">{{confirmation.decline}}</button>
+</div>

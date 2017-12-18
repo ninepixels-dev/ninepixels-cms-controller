@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h4>Uploader</h4>
+    <button type="button" class="btn btn-default pull-right" ng-click="ctrl.cancel()">X</button>
+</div>
+
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <label>Galerija</label>
+            <div class="dropdown">
+                <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">{{ _gallery.name || 'Pick gallery...'}}</button>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="gallery in galleries| orderBy: '-id'">
+                        <a ng-click="_gallery = gallery">{{gallery.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-if="!uploader.queue.length" nv-file-drop uploader="uploader">
+        <div class="col-md-12 init-upload">
+            <span>Prevuci fajl</span>
+            <span class="or-label">ili</span>
+            <label for="input-file-upload" class="btn btn-ninepixels">Izaberite fajlove sa računara</label>
+            <input type="file" id="input-file-upload" nv-file-select="" uploader="uploader" class="hide" multiple/>
+        </div>
+    </div>
+
+    <div class="row np-gallery-list" ng-if="uploader.queue.length">
+        <div class="np-gallery-item" ng-repeat="item in uploader.queue">
+            <div ng-show="uploader.isHTML5" ng-thumb="{file: item._file, width: 144}"></div>
+
+            <div ng-show="item.isSuccess" class="np-progress-status np-progress-status--success"><i class="glyphicon glyphicon-ok"></i></div>
+            <div ng-show="item.isError || item.isCancel" class="np-progress-status np-progress-status--error"><i class="glyphicon glyphicon-remove"></i></div>
+
+            <div ng-show="uploader.isHTML5" class="np-progress">
+                <div class="np-progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+            </div>
+            <div class="np-gallery-meta">
+                <input type="text" class="form-control" ng-model="item.formData.alt" placeholder="Alt" />
+                <input type="text" class="form-control" ng-model="item.formData.title" placeholder="Title" />
+                <button class="btn btn-danger" ng-click="item.remove()" ng-show="!item.isSuccess && !item.isUploading">Obriši</button>
+                <button class="btn btn-warning" ng-click="item.cancel()" ng-show="item.isUploading">Zaustavi</button>
+                <button class="btn btn-success" ng-click="item.remove()" disabled="disabled" ng-show="item.isSuccess">Otpremljeno</button>
+                <button class="btn btn-ninepixels" ng-click="item.upload()"  ng-show="item.isError || item.isCancel">Ponovi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-ninepixels" ng-click="uploader.uploadAll()" ng-if="uploader.queue.length">Uploaduj</button>
+</div>

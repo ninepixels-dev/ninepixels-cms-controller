@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <i class="toolbar-icon icon-control-page"></i>
+    <h4>Upravljaj stranicama</h4>
+    <button type="button" class="btn btn-default pull-right" ng-click="ctrl.cancel()">X</button>
+</div>
+
+<div class="modal-body" ng-if="status.view === 'list'">
+    <label>Pretraga</label>
+    <div class="row">
+        <div class="col-md-9 form-group">
+            <input type="text" class="form-control" ng-model="search.name" ng-trim="false">
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-ninepixels" ng-click="ctrl.addNew()">Dodaj stranu</button>
+        </div>
+    </div>
+
+    <ul class="np-modal-list"
+        np-page-list
+        data-list="pages"
+        data-filter="search"
+        data-update="ctrl.update"
+        data-toggle="ctrl.toggle"
+        data-remove="ctrl.delete">
+    </ul>
+</div>
+
+<div class="modal-body" ng-if="status.view === 'form'" ng-include="'np-controller/templates/page-form-dialog.html'"></div>
+
+<div class="modal-footer" ng-show="status.view === 'form'">
+    <button type="button" class="btn btn-ninepixels" ng-click="ctrl.save(page)">Sačuvaj</button>
+</div>

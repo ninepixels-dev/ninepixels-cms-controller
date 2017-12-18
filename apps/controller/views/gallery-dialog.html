@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <h4>Galerija</h4>
+    <button type="button" class="btn btn-default pull-right" ng-click="ctrl.cancel()">X</button>
+</div>
+
+<div class="modal-body" ng-if="galleries.length">
+    <div class="row col-md-12 np-gallery-controls" ng-show="!selected">
+        <label>Pretraga</label>
+        <div class="row">
+            <div class="col-md-9 form-group">
+                <input type="text" class="form-control" ng-model="search.name" ng-trim="false">
+            </div>
+            <div class="col-md-3 align-right">
+                <button type="button" class="btn btn-ninepixels" ng-click="ctrl.add()">Dodaj galeriju</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row np-gallery-list" ng-if="!selected">
+        <div class="np-gallery-holder" ng-repeat="gallery in galleries| filter:search track by gallery.id" ng-click="ctrl.select(gallery)">
+            <img ng-repeat="image in gallery.images| limitTo:4 track by image.id" ng-src="{{server_url + image.url}}">
+            <label>{{gallery.name}}</label>
+        </div>
+    </div>
+
+    <div class="row np-gallery-list" ng-if="selected">
+        <form class="np-gallery-item np-gallery-item--wider" ng-repeat="image in selected.images track by image.id" name="form[image.id]">
+            <img ng-src="{{server_url + image.url}}" />
+            <div class="np-gallery-meta">
+                <input type="text" class="form-control" ng-model="image.alt" placeholder="Alt" ng-change="image.$dirty = form[image.id].$dirty" />
+                <input type="text" class="form-control" ng-model="image.title" placeholder="Title" ng-change="image.$dirty = form[image.id].$dirty"/>
+                <button class="btn btn-danger" ng-click="ctrl.delete(image)">Obriši</button>
+            </div>
+        </form>
+
+        <div class="np-modal-empty" ng-if="!selected.images.length">
+            U ovoj galeriji trenutno nema slika
+            <a href="" ng-controller="npUploaderCtrl as upload" ng-click="upload.manage(selected)">Dodaj prve</a>
+        </div>
+    </div>
+</div>
+
+<div class="modal-body" ng-if="!galleries.length">
+    <div class="np-modal-empty">
+        Trenutno nemate definisanih galerija
+        <a href="" ng-click="ctrl.add()">Dodajte prvu</a>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" ng-show="selected" class="btn btn-ninepixels" ng-if="selected.images.length" ng-controller="npUploaderCtrl as upload" ng-click="upload.manage(selected)">Dodaj</button>
+    <button type="button" ng-show="selected" class="btn btn-ninepixels" ng-click="ctrl.update(selected)" ng-if="selected.images.length">Sačuvaj</button>
+</div>

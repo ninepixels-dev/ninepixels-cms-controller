@@ -1,0 +1,76 @@
+.np-modal, .np-toolbar-container {
+    .switcher {
+        display: inline-block;
+        margin: 5px 0;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+
+        .switcher-label,
+        .switcher-line {
+            display: inline-block;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        .switcher-label {
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .switcher-line {
+            position: relative;
+            width: 40px;
+            height: 2em;
+            margin: 0 8px;
+
+            input { display: none !important; }
+
+            &:before {
+                content: '';
+                display: block;
+                vertical-align: middle;
+                width: 100%;
+                height: 20px;
+                background: #8ca0ad;
+                background-image: -webkit-linear-gradient(#e6e6e6, #cad6de);
+                background-image: linear-gradient(#e6e6e6, #cad6de);
+            }
+            &:before, &:after {
+                -webkit-transform: translateY(-50%);
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+                position: absolute;
+                top: 50%;
+                border-radius: 10em;
+                -webkit-transition: all 300ms ease;
+                -ms-transition: all 300ms ease;
+                transition: all 300ms ease;
+            }
+            &:after {
+                content: '';
+                display: block;
+                width: 20px;
+                height: 20px;
+                background: #fff;
+                border: 1px solid #c9d1d6;
+                box-shadow: 0 1px 2px rgba(97, 126, 147, .5);
+                left: 0;
+            }
+        }
+
+        &.active {
+            .switcher-line:after {
+                left: 100%;
+                background: #4ecb32;
+                -webkit-transform: translate(-100%, -50%);
+                -ms-transform: translate(-100%, -50%);
+                transform: translate(-100%, -50%);
+            }
+        }
+
+        &.disabled {
+            opacity: .7;
+        }
+    }
+}

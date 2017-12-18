@@ -1,0 +1,83 @@
+<div class="modal-header">
+    <h4>{{_item.id ? 'Izmeni artikal' : 'Dodaj artikal'}}</h4>
+    <button type="button" class="btn pull-right" ng-click="ctrl.cancel()">X</button>
+</div>
+
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12 form-group medium-editor">
+            <div np-html-editor ng-model="_item.structure"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <label>Dodatne klase</label>
+            <input type="text" class="form-control" ng-model="_item.classes">
+        </div>
+    </div>
+
+    <uib-tabset type="tabs nested-tabs">
+        <uib-tab index="0" heading="Slika">
+            <div class="form-group">
+                <label>Slika</label>
+                <div np-image-picker class="pick-image" ng-model="_item.image" ng-class="{'empty' : !_item.image}" ng-click="manage()">
+                    <img ng-if="_item.image" ng-src="{{server_url + _item.image.url}}" />
+                </div>
+            </div>
+        </uib-tab>
+
+        <uib-tab index="1" heading="Link">
+            <div class="form-group">
+                <label>Link</label>
+                <input type="text" class="form-control" ng-model="_item.link">
+            </div>
+        </uib-tab>
+
+        <uib-tab index="2" heading="Video">
+            <div class="form-group">
+                <label>Video</label>
+                <input type="text" class="form-control" ng-model="_item.video">
+            </div>
+        </uib-tab>
+
+        <uib-tab index="3" heading="Galerija">
+            <div class="form-group">
+                <label>Galerija</label>
+                <div class="dropdown">
+                    <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">{{_item.gallery.name}}</button>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="gallery in galleries| orderBy: 'name'">
+                            <a ng-click="_item.gallery = gallery">{{gallery.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </uib-tab>
+
+        <uib-tab index="4" heading="Snippet">
+            <div class="form-group">
+                <label>HTML Snippet</label>
+                <textarea ng-model="_item.snippet" class="form-control html-snippet"></textarea>
+            </div>
+        </uib-tab>
+
+        <uib-tab index="5" heading="Komponenta">
+            <div class="form-group">
+                <label>Komponenta</label>
+                <div class="dropdown">
+                    <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">{{_item.component.name}}</button>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="component in components| orderBy: 'name'">
+                            <a ng-click="_item.component = component">{{component.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </uib-tab>
+    </uib-tabset>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-ninepixels" ng-click="ctrl.save(_item)">Sačuvaj</button>
+</div>

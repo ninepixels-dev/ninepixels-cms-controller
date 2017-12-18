@@ -1,0 +1,55 @@
+<div class="modal-header">
+    <h4>Podešavanja</h4>
+    <button type="button" class="btn pull-right" ng-click="ctrl.cancel()">X</button>
+</div>
+
+<div class="modal-body" ng-show="options.length && view === 'list'">
+    <ul class="np-modal-list">
+        <li ng-repeat="option in options | orderBy: 'name' track by option.id">
+            <div class="np-modal-list-name">{{option.name}} [{{option.type}}]</div>
+            <div class="np-modal-list-controls">
+                <span ng-click="ctrl.update(option)"><i class="glyphicon glyphicon-pencil"></i></span>
+                <span ng-click="ctrl.delete(option)"><i class="glyphicon glyphicon-trash"></i></span>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="modal-body" ng-if="!options.length && view !== 'form'">
+    <div class="np-modal-empty">
+        Trenutno nemate definisanih podešavanja
+        <a href="" ng-click="ctrl.add()">Dodajte prvo</a>
+    </div>
+</div>
+
+<div class="modal-body" ng-show="view === 'form'">
+    <div class="row">
+        <div class="col-md-8 form-group">
+            <label>Naziv</label>
+            <input type="text" class="form-control" ng-model="_option.name">
+        </div>
+        <div class="col-md-4 form-group">
+            <label>Tip</label>
+            <div class="dropdown">
+                <button class="dropdown-toggle" type="button" data-toggle="dropdown">{{_option.type}}</button>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="type in types">
+                        <a ng-click="_option.type = type">{{type}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <label>HTML kod</label>
+            <textarea class="form-control html-snippet" ng-model="_option.value"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-ninepixels" ng-if="view === 'list'" ng-click="ctrl.add()">Dodaj</button>
+    <button type="button" class="btn btn-ninepixels" ng-if="view === 'form'" ng-click="ctrl.save(_option)">Sačuvaj</button>
+</div>

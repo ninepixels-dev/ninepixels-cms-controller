@@ -1,0 +1,19 @@
+<md-autocomplete
+    md-selected-item="selectedItem"
+    md-search-text="searchText"
+    md-items="item in querySearch(searchText)"
+    md-item-text="parseField(item)"
+    md-selected-item-change="itemChanged()"
+    md-floating-label="{{label}}"
+    md-min-length="0"
+    ng-disabled="isDisabled"
+    ng-required="isRequired">   
+
+    <md-item-template>
+        <span md-highlight-text="searchText" md-highlight-flags="^i">{{parseField(item)}}</span>
+    </md-item-template>
+
+    <md-not-found>
+        Nijedan rezultat za upit {{searchText}} nije nadjen.
+    </md-not-found>
+</md-autocomplete>
