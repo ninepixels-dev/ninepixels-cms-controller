@@ -30,7 +30,7 @@
                 margin: 0;
 
                 li {
-                    padding-left: 20px;
+                    padding-left: 5px;
                     border-bottom: 1px solid #e6e6e6;
 
                     &:first-of-type {
@@ -47,7 +47,11 @@
         .np-modal-list-name {
             display: inline-block;
             vertical-align: middle;
+            max-width: 425px;
             padding: 5px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .np-modal-list-actions {

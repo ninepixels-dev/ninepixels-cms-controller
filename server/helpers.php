@@ -21,11 +21,12 @@ function npEditor($element, $class, $item, $withoutContent = false) {
 
 // Function for generating image object
 function npImage($item, $classes = '', $thumbs = false, $additional = false) {
-    if (isset($item->image)) {
+    if (isset($item->image) || isset($item->url)) {
+        $image = isset($item->image) ? $item->image : $item;
         $thumbs = $thumbs ? 'uploads/' . $thumbs . '/' : 'uploads/';
         $additional ? $additional : '';
 
-        echo '<img class="' . $classes . '" src="' . $GLOBALS['SERVER_URL'] . $thumbs . $item->image->url . '" alt="' . (property_exists($item->image, 'alt') ? $item->image->alt : '') . '" title="' . (property_exists($item->image, 'title') ? $item->image->title : '') . '"' . $additional . '/>';
+        echo '<img class="' . $classes . '" src="' . $GLOBALS['SERVER_URL'] . $thumbs . $image->url . '" alt="' . (property_exists($image, 'alt') ? $image->alt : '') . '" title="' . (property_exists($image, 'title') ? $image->title : '') . '"' . $additional . '/>';
     }
 }
 

@@ -1,4 +1,4 @@
-<li ng-repeat="page in list| parent: parent | filter: filter track by page.id" class="{{parent ? 'ui-sortable-list-' + parent : 'ui-sortable-main'}}">
+<li ng-repeat="page in list| parent: parent | filter: filter | orderBy: 'position' track by page.id" class="{{parent ? 'ui-sortable-list-' + parent : 'ui-sortable-main'}}">
     <div class="np-modal-list-name">{{page.name}}</div>
 
     <div class="np-modal-list-actions">

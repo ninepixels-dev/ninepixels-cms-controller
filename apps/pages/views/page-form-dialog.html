@@ -4,7 +4,7 @@
         <div class="dropdown">
             <button class="dropdown-toggle" type="button" data-toggle="dropdown">{{page.parent.name}}</button>
             <ul class="dropdown-menu">
-                <li ng-repeat="_page in pages | orderBy: 'id' track by _page.id">
+                <li ng-repeat="_page in pages| orderBy: 'name' track by _page.id">
                     <a ng-click="page.parent = _page">{{_page.name}}</a>
                 </li>
             </ul>
@@ -49,7 +49,7 @@
         <div class="dropdown">
             <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">{{page.gallery.name}}</button>
             <ul class="dropdown-menu">
-                <li ng-repeat="gallery in galleries | orderBy: 'name'">
+                <li ng-repeat="gallery in galleries| orderBy: 'name'">
                     <a ng-click="page.gallery = gallery">{{gallery.name}}</a>
                 </li>
             </ul>
