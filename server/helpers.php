@@ -67,6 +67,10 @@ function filterBy($items, $key, $value, $item = true, $sort = false) {
         if (property_exists($obj, $key)) {
             return $obj->{$key} == $value ? true : false;
         }
+
+        if ($value === false) {
+            return true;
+        }
     });
 
     if (empty($array) && isset($_COOKIE['user']) && $item) {
