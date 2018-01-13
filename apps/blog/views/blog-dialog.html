@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-md-8 form-group">
             <label>Naslov</label>
-            <input type="text" class="form-control" ng-model="blog.title" ng-change="ctrl.validate(blog.title)" ng-trim="false">
+            <input type="text" class="form-control" ng-model="blog.title" ng-change="ctrl.validate(blog.title)" ng-trim="false" required>
         </div>
         <div class="col-md-4 form-group">
             <label>Template</label>
@@ -60,7 +60,7 @@
 
     <div class="row">
         <div class="col-md-4 form-group">
-            <label>Povezana strana / Kategorija</label>
+            <label>Kategorija</label>
             <div class="dropdown">
                 <button class="dropdown-toggle" type="button" data-toggle="dropdown">{{blog.page.name}}</button>
                 <ul class="dropdown-menu">

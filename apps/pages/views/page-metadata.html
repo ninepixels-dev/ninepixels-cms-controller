@@ -1,18 +1,25 @@
 <div class="row">
     <div class="col-md-6 form-group">
-        <label>Navigation ({{language.name|| 'Default'}})</label>
+        <label>Navigacija (Navigation) ({{language.name|| 'Default'}})</label>
         <input type="text" class="form-control" ng-model="metadata.navigation">
     </div>
 
     <div class="col-md-6 form-group">
-        <label>Title ({{language.name|| 'Default'}})</label>
+        <label>Naslov (Title) ({{language.name|| 'Default'}})</label>
         <input type="text" class="form-control" ng-model="metadata.title">
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12 form-group">
-        <label>Description ({{language.name|| 'Default'}})</label>
+        <label>Dodatne informacije (Additional info) ({{language.name|| 'Default'}})</label>
+        <textarea class="form-control" ng-model="metadata.additionalFields"></textarea>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 form-group">
+        <label>Opis (Description) ({{language.name|| 'Default'}})</label>
         <textarea class="form-control" ng-model="metadata.description"></textarea>
     </div>
 </div>

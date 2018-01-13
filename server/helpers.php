@@ -178,3 +178,19 @@ function limit_text($text, $limit, $stripHTML = false) {
     }
     return $text;
 }
+
+// Function for generating breadcrums
+function createBreadcrump($page) {
+    $pageArray = [];
+
+    array_push($pageArray, $page);
+
+    while (property_exists($page, 'parent')) {
+        $page = $page->parent;
+        array_push($pageArray, $page);
+    }
+
+    krsort($pageArray);
+
+    return $pageArray;
+}

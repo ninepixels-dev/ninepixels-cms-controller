@@ -102,6 +102,17 @@ body.with-toolbar {
         }
     }
 
+    .col-group + .btn-link {
+        width: 100%;
+        text-align: left;
+        text-decoration: none;
+        color: @grey;
+
+        i {
+            margin-right: 10px;
+        }
+    }
+
     .btn--flat {
         border-radius: 0;
     } 
@@ -261,6 +272,16 @@ body.with-toolbar {
 
     .align-right {
         text-align: right;
+    }
+
+    .col-group {
+        input {
+            border-bottom: 1px solid @white;
+        }
+
+        input[name="key"] {
+            border-right: 1px solid @white;
+        }
     }
 }
 

@@ -28,8 +28,9 @@
             <i class="toolbar-icon icon-control-content"></i>Sadržaj <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-            <li ng-if="checkForApp('blog')"><a href="#" ng-controller="npBlogCtrl as blog" ng-click="blog.manage()">Blog</a></li>
-            <li ng-if="checkForApp('product')"><a href="#" ng-controller="npProductsCtrl as product" ng-click="product.manage()">Proizvodi</a></li>
+            <li ng-if="checkForApp('blog')"><a href="#" ng-controller="npBlogCtrl as blogCtrl" ng-click="blogCtrl.manage()">Blog</a></li>
+            <li ng-if="checkForApp('product')"><a href="#" ng-controller="npProductsCtrl as productCtrl" ng-click="productCtrl.manage()">Proizvodi</a></li>
+            <li ng-if="checkForApp('travel')"><a href="#" ng-controller="npTravelCtrl as travelCtrl" ng-click="travelCtrl.manage()">Travel</a></li>
             <li><a href="#" ng-controller="npGalleryCtrl as gallery" ng-click="gallery.manage()">Galerije</a></li>
             <li ng-if="checkForApp('language')"><a href="#" ng-controller="npLanguageCtrl as language" ng-if="user.admin" ng-click="language.manage()">Lokalizacija</a></li>
         </ul>

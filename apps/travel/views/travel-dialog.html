@@ -1,0 +1,117 @@
+<div class="modal-header">
+    <h4>Upravljaj smeštajnim jedinicama {{travel.name ? ' | ' + travel.name : ''}}</h4>
+    <button type="button" class="btn pull-right" ng-click="ctrl.cancel()">X</button>
+</div>
+
+<div class="modal-body" ng-show="view === 'list' && travels.length">
+    <label>Pretraga</label>
+    <div class="row">
+        <div class="col-md-9 form-group">
+            <input type="text" class="form-control" ng-model="search.title" ng-trim="false">
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-ninepixels" ng-click="ctrl.add()">Dodaj smeštaj</button>
+        </div>
+    </div>
+
+    <ul class="np-modal-list">
+        <li ng-repeat="travel in travels| filter:search track by travel.id">
+            <div class="np-modal-list-name">{{travel.title}}</div>
+            <div class="np-modal-list-controls">
+                <span ng-click="ctrl.update(travel)"><i class="glyphicon glyphicon-pencil"></i></span>
+                <span ng-click="ctrl.delete(travel)"><i class="glyphicon glyphicon-trash"></i></span>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="modal-body" ng-if="!travels.length && view !== 'form'">
+    <div class="np-modal-empty">
+        Trenutno nemate smeštajnih jedinica
+        <a href="" ng-click="ctrl.add()">Dodaj prvu</a>
+    </div>
+</div>
+
+<div class="modal-body" ng-show="view === 'form'">
+    <div class="row">
+        <div class="col-md-7 form-group">
+            <label>Kategorija</label>
+            <div class="dropdown">
+                <button class="dropdown-toggle" type="button" data-toggle="dropdown">{{travel.page.name}}</button>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="page in pages| orderBy: 'id' track by page.id">
+                        <a ng-click="travel.page = page; ctrl.validate(travel.title)">{{page.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-5 form-group">
+            <label>Template</label>
+            <div class="dropdown">
+                <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">{{travel.template}}</button>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="(key, val) in templates">
+                        <a ng-click="travel.template = val">{{key}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <label>Naslov</label>
+            <input type="text" class="form-control" ng-model="travel.title" ng-change="ctrl.validate(travel.title)" ng-trim="false" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <label>Osnovne informacije</label>
+            <div class="col-group basic-info" ng-repeat="group in travel.basic_info track by $index">
+                <input type="text" class="col-md-6" name="key" ng-model="group.key" />
+                <input type="text" class="col-md-6" name="value" ng-model="group.value" />
+            </div>
+            <button class="btn btn-link" ng-click="ctrl.addExtraField('basic_info')"><i class="glyphicon glyphicon-plus"></i>Dodaj polje</button>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Dodatne informacije</label>
+            <div class="col-group additional-info" ng-repeat="group in travel.additional_info track by $index">
+                <input type="text" class="col-md-6" name="key" ng-model="group.key" />
+                <input type="text" class="col-md-6" name="value" ng-model="group.value" />
+            </div>
+            <button class="btn btn-link" ng-click="ctrl.addExtraField('additional_info')"><i class="glyphicon glyphicon-plus"></i>Dodaj polje</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <label>Galerija</label>
+            <div class="dropdown">
+                <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">{{travel.gallery.name}}</button>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="gallery in galleries| orderBy: 'name'">
+                        <a ng-click="travel.gallery = gallery">{{gallery.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Lokacija</label>
+            <input type="text" class="form-control" ng-model="travel.location">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <label>Slika</label>
+            <div np-image-picker class="pick-image" ng-model="travel.image" ng-click="manage()" ng-class="{'empty' : !travel.image}">
+                <img ng-if="travel.image" ng-src="{{server_url + travel.image.url}}" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer" ng-show="view === 'form'">
+    <button type="button" class="btn btn-ninepixels" ng-click="ctrl.save(travel)">Sačuvaj</button>
+</div>

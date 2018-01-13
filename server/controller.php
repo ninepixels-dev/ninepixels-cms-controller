@@ -33,7 +33,7 @@ if ($assets_url === FALSE) {
 $assets = json_decode($assets_url);
 
 // Merge all page-type data
-$pages = array_merge($assets->pages, $assets->blogs);
+$pages = array_merge($assets->pages, $assets->blogs, $assets->travels);
 
 // If there are no pages, return not found
 if (empty($pages)) {
