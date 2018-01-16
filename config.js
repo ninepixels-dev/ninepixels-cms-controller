@@ -8,7 +8,7 @@ angular.module('ninepixels', [
     'ninepixels.pages',
     'ninepixels.users',
     'ninepixels.blog',
-    'ninepixels.products',
+    'ninepixels.product',
     'ninepixels.travel',
     'ninepixels.settings',
     'ninepixels.authentification',
