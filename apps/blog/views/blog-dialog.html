@@ -15,10 +15,11 @@
     </div>
 
     <ul class="np-modal-list">
-        <li ng-repeat="blog in blogs| filter:search| orderBy:'-created' track by blog.id">
+        <li ng-repeat="blog in blogs | filter:search | orderBy:'-created' track by blog.id">
             <div class="np-modal-list-name">{{blog.title}}</div>
             <div class="np-modal-list-controls">
                 <span>{{ctrl.date(blog.created)}}</span>
+                <span ng-click="ctrl.pin(blog)" ng-class="{'pinned': blog.pinned}"><i class="glyphicon glyphicon-pushpin"></i></span>
                 <span ng-click="ctrl.update(blog)"><i class="glyphicon glyphicon-pencil"></i></span>
                 <span ng-click="ctrl.delete(blog)"><i class="glyphicon glyphicon-trash"></i></span>
             </div>
@@ -64,7 +65,7 @@
             <div class="dropdown">
                 <button class="dropdown-toggle" type="button" data-toggle="dropdown">{{blog.page.name}}</button>
                 <ul class="dropdown-menu">
-                    <li ng-repeat="page in pages| orderBy: 'id' track by page.id">
+                    <li ng-repeat="page in pages | orderBy: 'id' track by page.id">
                         <a ng-click="blog.page = page; ctrl.validate(blog.title)">{{page.name}}</a>
                     </li>
                 </ul>

@@ -31,6 +31,12 @@ function npBlogCtrl($scope, api, modalDialog, assets, config) {
         return $scope.blog = _blog;
     };
 
+    this.pin = function (_blog) {
+        _blog['pinned'] = !_blog['pinned'];
+
+        return api('blogs').update(_blog).then(callback);
+    };
+
     this.validate = function (value) {
         $scope.blog.name = encodeURI(value
                 .replace(/č|ć/gi, 'c')
