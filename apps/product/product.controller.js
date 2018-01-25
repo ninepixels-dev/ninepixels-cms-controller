@@ -38,6 +38,7 @@ function npProductCtrl($scope, api, modalDialog, assets, config) {
         }
 
         $scope.product.name = encodeURI(value
+                .replace(/'/gi, '')
                 .replace(/č|ć/gi, 'c')
                 .replace(/ž/gi, 'z')
                 .replace(/š/gi, 's')

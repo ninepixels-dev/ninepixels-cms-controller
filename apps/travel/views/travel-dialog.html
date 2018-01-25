@@ -14,14 +14,15 @@
         </div>
     </div>
 
-    <ul class="np-modal-list">
-        <li ng-repeat="travel in travels| filter:search track by travel.id">
-            <div class="np-modal-list-name">{{travel.title}}</div>
-            <div class="np-modal-list-controls">
-                <span ng-click="ctrl.update(travel)"><i class="glyphicon glyphicon-pencil"></i></span>
-                <span ng-click="ctrl.delete(travel)"><i class="glyphicon glyphicon-trash"></i></span>
-            </div>
-        </li>
+    <ul class="np-modal-list"
+        np-page-list
+        data-list="travels"
+        data-identifier="title"
+        data-filter="search"
+        data-order="id"
+        data-update="ctrl.update"
+        data-pin="ctrl.pin"
+        data-remove="ctrl.delete">
     </ul>
 </div>
 
@@ -34,7 +35,18 @@
 
 <div class="modal-body" ng-show="view === 'form'">
     <div class="row">
-        <div class="col-md-7 form-group">
+        <div class="col-md-4 form-group">
+            <label>Smeštaj</label>
+            <div class="dropdown">
+                <button class="dropdown-toggle" type="button" data-toggle="dropdown">{{travel.parent.title}}</button>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="accommodation in travels| orderBy: 'id' track by accommodation.id">
+                        <a ng-click="travel.parent = accommodation">{{accommodation.title}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4 form-group">
             <label>Kategorija</label>
             <div class="dropdown">
                 <button class="dropdown-toggle" type="button" data-toggle="dropdown">{{travel.page.name}}</button>
@@ -45,7 +57,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-5 form-group">
+        <div class="col-md-4 form-group">
             <label>Template</label>
             <div class="dropdown">
                 <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">{{travel.template}}</button>
@@ -62,6 +74,12 @@
         <div class="col-md-12 form-group">
             <label>Naslov</label>
             <input type="text" class="form-control" ng-model="travel.title" ng-change="ctrl.validate(travel.title)" ng-trim="false" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 form-group medium-editor">
+            <div np-html-editor ng-model="travel.description"></div>
         </div>
     </div>
 
@@ -86,6 +104,12 @@
 
     <div class="row">
         <div class="col-md-6 form-group">
+            <label>Slika</label>
+            <div np-image-picker class="pick-image" ng-model="travel.image" ng-click="manage()" ng-class="{'empty' : !travel.image}">
+                <img ng-if="travel.image" ng-src="{{server_url + travel.image.url}}" />
+            </div>
+        </div>
+        <div class="col-md-6 form-group">
             <label>Galerija</label>
             <div class="dropdown">
                 <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">{{travel.gallery.name}}</button>
@@ -96,18 +120,16 @@
                 </ul>
             </div>
         </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-6 form-group">
             <label>Lokacija</label>
             <input type="text" class="form-control" ng-model="travel.location">
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12 form-group">
-            <label>Slika</label>
-            <div np-image-picker class="pick-image" ng-model="travel.image" ng-click="manage()" ng-class="{'empty' : !travel.image}">
-                <img ng-if="travel.image" ng-src="{{server_url + travel.image.url}}" />
-            </div>
+        <div class="col-md-6 form-group">
+            <label>Kordinate</label>
+            <input type="text" class="form-control" ng-model="travel.cordinates">
         </div>
     </div>
 </div>

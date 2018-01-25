@@ -56,6 +56,7 @@ function npPageController($scope, $timeout, api, modalDialog, assets, config) {
 
     this.validate = function (value) {
         $scope.page.name = encodeURI(value
+                .replace(/'/gi, '')
                 .replace(/č|ć/gi, 'c')
                 .replace(/ž/gi, 'z')
                 .replace(/š/gi, 's')

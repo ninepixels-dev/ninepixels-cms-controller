@@ -33,10 +33,16 @@ function npTravelCtrl($scope, api, modalDialog, assets, config) {
 
     this.update = function (_travel) {
         $scope.travel = _travel;
-        $scope.travel.basic_info = JSON.parse($scope.travel.basic_info);
-        $scope.travel.additional_info = JSON.parse($scope.travel.additional_info);
+        $scope.travel.basic_info = typeof $scope.travel.basic_info === "string" ? JSON.parse($scope.travel.basic_info) : $scope.travel.basic_info;
+        $scope.travel.additional_info = typeof $scope.travel.additional_info === "string" ? JSON.parse($scope.travel.additional_info) : $scope.travel.additional_info;
 
         return $scope.view = 'form';
+    };
+
+    this.pin = function (_travel) {
+        _travel['pinned'] = !_travel['pinned'];
+
+        return api('travels').update(_travel).then(callback);
     };
 
     this.validate = function (value) {
@@ -45,6 +51,7 @@ function npTravelCtrl($scope, api, modalDialog, assets, config) {
         }
 
         $scope.travel.name = encodeURI(value
+                .replace(/'/gi, '')
                 .replace(/č|ć/gi, 'c')
                 .replace(/ž/gi, 'z')
                 .replace(/š/gi, 's')
