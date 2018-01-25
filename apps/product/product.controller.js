@@ -66,7 +66,7 @@ function npProductCtrl($scope, api, modalDialog, assets, config) {
     this.delete = function (_product) {
         return modalDialog.showConfirmation().then(function () {
             api('products').delete(_product).then(function () {
-                return $scope.pages = assets.removeAsset('products', _product);
+                return $scope.products = assets.removeAsset('products', _product);
             });
         });
     };

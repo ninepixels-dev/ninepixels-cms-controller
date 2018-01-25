@@ -7,6 +7,9 @@ function datetimePicker() {
     return {
         require: 'ngModel',
         link: function (scope, elem, attr, ngModel) {
+            
+            elem.html('test html');
+
             elem.datetimepicker({
                 format: 'DD-MM-YYYY HH:mm',
                 sideBySide: true,

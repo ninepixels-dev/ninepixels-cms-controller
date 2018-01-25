@@ -65,7 +65,7 @@ function npBlogCtrl($scope, api, modalDialog, assets, config) {
     this.delete = function (_blog) {
         return modalDialog.showConfirmation().then(function () {
             api('blogs').delete(_blog).then(function () {
-                return $scope.pages = assets.removeAsset('blogs', _blog);
+                return $scope.blogs = assets.removeAsset('blogs', _blog);
             });
         });
     };

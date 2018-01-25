@@ -1,0 +1,80 @@
+<div class="modal-header">
+    <h4>Upravljaj dogadjajima {{event.name ? ' | ' + event.name : ''}}</h4>
+    <button type="button" class="btn pull-right" ng-click="ctrl.cancel()">X</button>
+</div>
+
+<div class="modal-body" ng-show="view === 'list' && events.length">
+    <label>Pretraga</label>
+    <div class="row">
+        <div class="col-md-9 form-group">
+            <input type="text" class="form-control" ng-model="search.title" ng-trim="false">
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-ninepixels" ng-click="ctrl.add()">Dodaj dogadjaj</div>
+    </div>
+
+    <ul class="np-modal-list">
+        <li ng-repeat="event in events| filter:search track by event.id">
+            <div class="np-modal-list-name">{{event.title}}</div>
+            <div class="np-modal-list-controls">
+                <span ng-click="ctrl.update(event)"><i class="glyphicon glyphicon-pencil"></i></span>
+                <span ng-click="ctrl.delete(event)"><i class="glyphicon glyphicon-trash"></i></span>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="modal-body" ng-if="!events.length && view !== 'form'">
+    <div class="np-modal-empty">
+        Trenutno nemate dogadjaje
+        <a href="" ng-click="ctrl.add()">Dodaj prvi</a>
+    </div>
+</div>
+
+<div class="modal-body" ng-show="view === 'form'">
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <label>Naslov</label>
+            <input type="text" class="form-control" ng-model="event.title" ng-change="ctrl.validate(event.title)" ng-trim="false" required>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Kategorija</label>
+            <div class="dropdown">
+                <button class="dropdown-toggle" type="button" data-toggle="dropdown">{{event.page.name}}</button>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="page in pages| orderBy: 'id' track by page.id">
+                        <a ng-click="event.page = page; ctrl.validate(event.title)">{{page.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 form-group medium-editor">
+            <div np-html-editor ng-model="event.description"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <label>Lokacija</label>
+            <input type="text" class="form-control" ng-model="event.location">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <label>Datum (od)</label>
+            <input type="datetime-local" class="form-control" ng-model="event.date_from">
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Datum (do)</label>
+            <input type="datetime-local" class="form-control" ng-model="event.date_to">
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer" ng-show="view === 'form'">
+    <button type="button" class="btn btn-ninepixels" ng-click="ctrl.save(event)">Sačuvaj</button>
+</div>

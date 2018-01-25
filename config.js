@@ -10,6 +10,7 @@ angular.module('ninepixels', [
     'ninepixels.blog',
     'ninepixels.product',
     'ninepixels.travel',
+    'ninepixels.events',
     'ninepixels.settings',
     'ninepixels.authentification',
     'ninepixels.api',

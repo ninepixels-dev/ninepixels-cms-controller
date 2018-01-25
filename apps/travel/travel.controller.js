@@ -80,7 +80,7 @@ function npTravelCtrl($scope, api, modalDialog, assets, config) {
     this.delete = function (_travel) {
         return modalDialog.showConfirmation().then(function () {
             api('travels').delete(_travel).then(function () {
-                return $scope.pages = assets.removeAsset('travels', _travel);
+                return $scope.travels = assets.removeAsset('travels', _travel);
             });
         });
     };
