@@ -139,10 +139,10 @@ function _url($url = '') {
 
 // Function for generating image url
 function _imageUrl($item, $thumbs = false) {
-    if (isset($item->image)) {
+    if (isset($item->url)) {
         $thumbs = $thumbs ? 'uploads/' . $thumbs . '/' : 'uploads/';
 
-        return $GLOBALS['SERVER_URL'] . $thumbs . $item->image->url;
+        return $GLOBALS['SERVER_URL'] . $thumbs . $item->url;
     }
 }
 

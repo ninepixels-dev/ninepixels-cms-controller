@@ -39,6 +39,7 @@ function npBlogCtrl($scope, api, modalDialog, assets, config) {
 
     this.validate = function (value) {
         $scope.blog.name = encodeURI(value
+                .replace(/'/gi, '')
                 .replace(/č|ć/gi, 'c')
                 .replace(/ž/gi, 'z')
                 .replace(/š/gi, 's')

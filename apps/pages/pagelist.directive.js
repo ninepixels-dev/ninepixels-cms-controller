@@ -2,15 +2,18 @@
 
 'use strict';
 
-npPageList.$inject = ['config', 'api', 'orderByFilter'];
-function npPageList(config, api, orderBy) {
+npPageList.$inject = ['config', 'api', 'orderByFilter', '$timeout'];
+function npPageList(config, api, orderBy, $timeout) {
     return {
         scope: {
             list: '=',
             parent: '=',
             filter: '=',
+            order: '@',
             update: '=',
             toggle: '=',
+            identifier: '@',
+            pin: '=',
             remove: '='
         },
         templateUrl: config.client_url + 'np-controller/templates/page-list.html',
@@ -24,9 +27,12 @@ function npPageList(config, api, orderBy) {
             scope._toggle = function (page, asset) {
                 return scope.toggle(page, asset);
             };
+            scope._pin = function (page) {
+                return scope.pin(page);
+            };
 
             // Sort element
-            scope.list = orderBy(scope.list, 'position', false);
+            scope.list = orderBy(scope.list, scope.order || 'position', false);
 
             // Reorder with drag and drop
             var updated = false;
